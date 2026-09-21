@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Victoria 🌻💗</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,body{
+  width:100%;
+  min-height:100%;
+  font-family:Georgia,serif;
+  overflow-x:hidden;
+}
+
+body{
+  background:
+    radial-gradient(circle at 20% 20%,#44205d 0%,transparent 35%),
+    radial-gradient(circle at 80% 80%,#57213d 0%,transparent 35%),
+    linear-gradient(135deg,#090314,#18051f,#250719);
+  color:white;
+}
+
+/* PARTICULAS */
+
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:1;
+}
+
+.particle{
+  position:absolute;
+  width:3px;
+  height:3px;
+  background:white;
+  border-radius:50%;
+  box-shadow:0 0 10px white;
+  animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+  from{opacity:.15;transform:scale(.5)}
+  to{opacity:1;transform:scale(1.5)}
+}
+
+/* PANTALLA INICIAL */
+
+#intro{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#08020d,#21071f,#100313);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  z-index:1000;
+  transition:1.5s;
+  padding:25px;
+}
+
+.introBox{
+  max-width:500px;
+  animation:appear 2s ease;
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.introBox .miniFlower{
+  font-size:65px;
+  animation:float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+  50%{transform:translateY(-15px) rotate(5deg)}
+}
+
+.introBox h1{
+  font-size:clamp(35px,10vw,65px);
+  margin:15px 0;
+  text-shadow:0 0 25px #ff77b7;
+}
+
+.introBox p{
+  color:#ffd9eb;
+  font-size:18px;
+  line-height:1.6;
+}
+
+.startBtn{
+  margin-top:30px;
+  border:1px solid #ffacd2;
+  background:rgba(255,255,255,.08);
+  color:white;
+  padding:15px 35px;
+  border-radius:50px;
+  font-size:17px;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(255,100,180,.35);
+  transition:.3s;
+}
+
+.startBtn:hover{
+  transform:scale(1.05);
+  background:rgba(255,150,210,.15);
+}
+
+/* CONTENIDO */
+
+#main{
+  position:relative;
+  z-index:2;
+  display:none;
+  min-height:100vh;
+  padding:60px 18px 100px;
+  text-align:center;
+}
+
+.date{
+  color:#ffd166;
+  letter-spacing:4px;
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+.title{
+  font-size:clamp(35px,10vw,70px);
+  background:linear-gradient(90deg,#fff,#ffd166,#ff91c8,#fff);
+  background-size:300%;
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:gradient 5s infinite;
+}
+
+@keyframes gradient{
+  0%{background-position:0}
+  50%{background-position:100%}
+  100%{background-position:0}
+}
+
+.subtitle{
+  margin-top:10px;
+  color:#ffdceb;
+  font-size:17px;
+}
+
+/* FLORES */
+
+.flowers{
+  position:relative;
+  height:160px;
+  margin:25px auto;
+  max-width:700px;
+}
+
+.flower{
+  position:absolute;
+  bottom:0;
+  font-size:55px;
+  animation:flowerFloat 4s infinite ease-in-out;
+}
+
+.flower:nth-child(1){left:8%;animation-delay:.2s}
+.flower:nth-child(2){left:25%;font-size:42px;animation-delay:1s}
+.flower:nth-child(3){left:45%;font-size:70px}
+.flower:nth-child(4){right:25%;font-size:45px;animation-delay:.7s}
+.flower:nth-child(5){right:7%;animation-delay:1.3s}
+
+@keyframes flowerFloat{
+  50%{transform:translateY(-15px) rotate(5deg)}
+}
+
+/* SOBRE */
+
+.envelopeArea{
+  margin:25px auto 45px;
+  perspective:1000px;
+}
+
+.envelope{
+  width:min(330px,90vw);
+  height:220px;
+  margin:auto;
+  position:relative;
+  cursor:pointer;
+  transform-style:preserve-3d;
+  transition:1s;
+}
+
+.envBack{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(145deg,#ffd166,#f2a900);
+  border-radius:10px;
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+}
+
+.envFront{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:70%;
+  background:linear-gradient(145deg,#ffc94f,#e49a00);
+  clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);
+  z-index:4;
+}
+
+.flap{
+  position:absolute;
+  top:0;
+  width:100%;
+  height:60%;
+  background:#ffe18a;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;
+  transition:1s;
+  z-index:5;
+}
+
+.seal{
+  position:absolute;
+  z-index:7;
+  left:50%;
+  top:48%;
+  transform:translate(-50%,-50%);
+  width:55px;
+  height:55px;
+  background:#e63966;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  box-shadow:0 0 20px rgba(255,50,100,.7);
+  transition:.5s;
+}
+
+.envelope.open .flap{
+  transform:rotateX(180deg);
+}
+
+.envelope.open .seal{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(0);
+}
+
+.envelopeHint{
+  margin-top:18px;
+  color:#ffe5ef;
+}
+
+/* CARTA */
+
+.letter{
+  display:none;
+  max-width:700px;
+  margin:0 auto 50px;
+  background:
+    linear-gradient(rgba(255,250,220,.97),rgba(255,245,205,.97));
+  color:#4b2830;
+  padding:35px 25px;
+  border-radius:8px;
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.6),
+    inset 0 0 40px rgba(160,100,20,.15);
+  text-align:left;
+  animation:letterOpen 1.3s ease;
+  position:relative;
+}
+
+@keyframes letterOpen{
+  from{opacity:0;transform:scale(.8) translateY(40px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+.letter:before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:1px solid rgba(150,100,30,.3);
+  pointer-events:none;
+}
+
+.letter h2{
+  text-align:center;
+  font-size:28px;
+  margin-bottom:22px;
+  color:#9b4b2d;
+}
+
+.letter p{
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:15px;
+}
+
+.signature{
+  text-align:right;
+  margin-top:30px;
+  font-weight:bold;
+  font-size:19px;
+}
+
+/* BOTON */
+
+.revealBtn{
+  display:block;
+  margin:20px auto;
+  padding:14px 28px;
+  border-radius:30px;
+  border:1px solid #ff9bc8;
+  background:rgba(255,100,170,.12);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOTOS */
+
+.photoSection{
+  max-width:850px;
+  margin:60px auto;
+}
+
+.sectionTitle{
+  font-size:30px;
+  margin-bottom:20px;
+  color:#ffd166;
+}
+
+.photos{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.photo{
+  min-height:180px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.2);
+  background:
+    linear-gradient(135deg,rgba(255,120,180,.15),rgba(255,210,100,.08));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:45px;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+  transition:.4s;
+  overflow:hidden;
+}
+
+.photo:hover{
+  transform:translateY(-8px) scale(1.02);
+}
+
+/* MENSAJES */
+
+.messages{
+  max-width:650px;
+  margin:70px auto;
+}
+
+.message{
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+  margin:25px 0;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+}
+
+.message.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.message span{
+  font-size:35px;
+  display:block;
+  margin-bottom:10px;
+}
+
+/* FINAL */
+
+.final{
+  margin:80px auto 20px;
+  max-width:650px;
+}
+
+.final h2{
+  font-size:clamp(30px,8vw,50px);
+  color:#ffb4d9;
+  text-shadow:0 0 25px #ff4f9a;
+}
+
+.final p{
+  margin-top:20px;
+  line-height:1.7;
+  color:#ffe5f1;
+}
+
+/* CORAZONES */
+
+.heart{
+  position:fixed;
+  bottom:-30px;
+  z-index:3;
+  pointer-events:none;
+  animation:rise linear forwards;
+}
+
+@keyframes rise{
+  to{
+    transform:translateY(-110vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/* CONTROL MUSICA */
+
+.music{
+  position:fixed;
+  right:15px;
+  bottom:15px;
+  z-index:50;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  border:1px solid #ffacd2;
+  background:rgba(20,5,25,.8);
+  color:white;
+  font-size:21px;
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+  #main{
+    padding-top:40px;
+  }
+
+  .photos{
+    grid-template-columns:1fr;
+  }
+
+  .photo{
+    min-height:150px;
+  }
+
+  .letter{
+    padding:28px 20px;
+  }
+
+  .letter p{
+    font-size:16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles"></div>
+
+<!-- INTRO -->
+
+<section id="intro">
+  <div class="introBox">
+
+    <div class="miniFlower">🌻</div>
+
+    <h1>Para Victoria</h1>
+
+    <p>
+      Preparé algo pequeño para ti...<br>
+      pero está hecho con muchísimo cariño.
+    </p>
+
+    <p style="margin-top:12px;">
+      <b>21 de septiembre de 2026</b>
+    </p>
+
+    <button class="startBtn" onclick="startPage()">
+      Abrir mi sorpresa 💗
+    </button>
+
+  </div>
+</section>
+
+<!-- CONTENIDO -->
+
+<main id="main">
+
+  <div class="date">21 · 09 · 2026</div>
+
+  <h1 class="title">Para Victoria 🌻</h1>
+
+  <p class="subtitle">
+    Hay detalles que no necesitan estar en una caja para ser especiales.
+  </p>
+
+  <div class="flowers">
+    <div class="flower">🌻</div>
+    <div class="flower">🌼</div>
+    <div class="flower">🌻</div>
+    <div class="flower">🌼</div>
+    <div class="flower">🌻</div>
+  </div>
+
+  <!-- SOBRE -->
+
+  <div class="envelopeArea">
+
+    <div class="envelope" id="envelope" onclick="openLetter()">
+
+      <div class="envBack"></div>
+
+      <div class="flap"></div>
+
+      <div class="envFront"></div>
+
+      <div class="seal">💗</div>
+
+    </div>
+
+    <p class="envelopeHint">
+      Toca el sobre para abrirlo 💌
+    </p>
+
+  </div>
+
+  <!-- CARTA -->
+
+  <article class="letter" id="letter">
+
+    <h2>Para mi niña hermosa 🌻</h2>
+
+    <p>
+      Victoria, te amo demasiado.
+    </p>
+
+    <p>
+      En este día 21 de septiembre yo no te dejaré de espectadora.
+      No puedo darte las flores amarillas en persona, pero sí puedo
+      dártelas en digital. 🌻💛
+    </p>
+
+    <p>
+      Y perdón si en algún momento te hice daño.
+      Te pido perdón. Yo te amo con todo mi corazón.
+    </p>
+
+    <p>
+      Te amo, por ti doy mi vida, en serio.
+      Te amo demasiado y perdóname por tanto daño que hice,
+      en serio, perdóname.
+    </p>
+
+    <p>
+      Te amo, mi niña hermosa 💗<br>
+      Te amo, mi reina 💗<br>
+      Te amo, mi vida 💗<br>
+      Y te amo, mi futura esposa 💗
+    </p>
+
+    <p>
+      Estas flores amarillas son digitales, pero el cariño
+      con el que hice este pequeño detalle es completamente real.
+      🌻💗
+    </p>
+
+    <div class="signature">
+      Att. Héctor Samuel Par Cuc 💗
+    </div>
+
+  </article>
+
+  <!-- MENSAJES -->
+
+  <section class="messages">
+
+    <h2 class="sectionTitle">
+      Algunas cosas que quiero que recuerdes ✨
+    </h2>
+
+    <div class="message">
+      <span>🌻</span>
+      Eres una persona muy especial para mí.
+    </div>
+
+    <div class="message">
+      <span>💗</span>
+      Gracias por formar parte de mi vida.
+    </div>
+
+    <div class="message">
+      <span>✨</span>
+      Incluso un pequeño detalle puede guardar un sentimiento enorme.
+    </div>
+
+    <div class="message">
+      <span>🌙</span>
+      Espero que cuando veas esto puedas sonreír aunque sea un poquito.
+    </div>
+
+    <div class="message">
+      <span>💌</span>
+      Y si alguna vez vuelves a abrir esta página, recuerda la fecha:
+      21 de septiembre de 2026.
+    </div>
+
+  </section>
+
+  <!-- FOTOS -->
+
+  <section class="photoSection">
+
+    <h2 class="sectionTitle">
+      Nuestros recuerdos 📸
+    </h2>
+
+    <div class="photos">
+
+      <div class="photo">
+        📷<br>
+        <small>Aquí puedes poner una foto</small>
+      </div>
+
+      <div class="photo">
+        💗<br>
+        <small>Un recuerdo especial</small>
+      </div>
+
+      <div class="photo">
+        🌻<br>
+        <small>Nuestro momento</small>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FINAL -->
+
+  <section class="final">
+
+    <h2>Gracias por llegar hasta aquí 💗</h2>
+
+    <p>
+      Puede que esto solamente sea una página en un celular,
+      pero detrás de cada detalle hay tiempo, pensamientos
+      y cariño.
+    </p>
+
+    <p style="margin-top:25px;">
+      <b>Te amo, Victoria. 🌻💗</b>
+    </p>
+
+    <p style="margin-top:30px;">
+      — Héctor Samuel Par Cuc
+    </p>
+
+  </section>
+
+</main>
+
+<!-- BOTON MUSICA -->
+
+<button class="music" id="musicBtn" onclick="toggleMusic()">
+  🎵
+</button>
+
+<script>
+
+/* =========================
+   INICIO
+========================= */
+
+function startPage(){
+
+  document.getElementById("intro").style.opacity="0";
+
+  setTimeout(()=>{
+    document.getElementById("intro").style.display="none";
+    document.getElementById("main").style.display="block";
+    createParticles();
+    startHearts();
+    revealMessages();
+  },1200);
+
+}
+
+/* =========================
+   SOBRE
+========================= */
+
+function openLetter(){
+
+  const envelope=document.getElementById("envelope");
+  const letter=document.getElementById("letter");
+
+  envelope.classList.add("open");
+
+  setTimeout(()=>{
+    letter.style.display="block";
+
+    letter.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+  },700);
+
+}
+
+/* =========================
+   PARTICULAS
+========================= */
+
+function createParticles(){
+
+  const container=document.getElementById("particles");
+
+  for(let i=0;i<80;i++){
+
+    const p=document.createElement("div");
+
+    p.className="particle";
+
+    p.style.left=Math.random()*100+"%";
+    p.style.top=Math.random()*100+"%";
+
+    p.style.animationDelay=(Math.random()*3)+"s";
+
+    p.style.opacity=Math.random();
+
+    container.appendChild(p);
+  }
+
+}
+
+/* =========================
+   CORAZONES
+========================= */
+
+function createHeart(){
+
+  const heart=document.createElement("div");
+
+  heart.className="heart";
+
+  const symbols=["💗","💖","💕","💞","💓","🌻"];
+
+  heart.innerHTML=
+    symbols[Math.floor(Math.random()*symbols.length)];
+
+  heart.style.left=Math.random()*100+"%";
+
+  heart.style.fontSize=
+    (14+Math.random()*22)+"px";
+
+  heart.style.animationDuration=
+    (5+Math.random()*5)+"s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{
+    heart.remove();
+  },10000);
+
+}
+
+function startHearts(){
+
+  setInterval(createHeart,900);
+
+}
+
+/* =========================
+   MENSAJES
+========================= */
+
+function revealMessages(){
+
+  const messages=document.querySelectorAll(".message");
+
+  const observer=new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
+
+      if(entry.isIntersecting){
+        entry.target.classList.add("show");
+      }
+
+    });
+
+  },{
+    threshold:.2
+  });
+
+  messages.forEach(m=>observer.observe(m));
+
+}
+
+/* =========================
+   MUSICA
+========================= */
+
+let audioContext=null;
+let oscillator=null;
+let gain=null;
+let playing=false;
+
+function toggleMusic(){
+
+  if(!audioContext){
+
+    audioContext=
+      new (window.AudioContext ||
+      window.webkitAudioContext)();
+
+    oscillator=
+      audioContext.createOscillator();
+
+    gain=
+      audioContext.createGain();
+
+    oscillator.type="sine";
+
+    oscillator.frequency.value=261.63;
+
+    gain.gain.value=.025;
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+
+    playing=true;
+
+    document.getElementById("musicBtn").innerHTML="🔊";
+
+    return;
+  }
+
+  if(playing){
+
+    gain.gain.value=0;
+
+    playing=false;
+
+    document.getElementById("musicBtn").innerHTML="🔇";
+
+  }else{
+
+    gain.gain.value=.025;
+
+    playing=true;
+
+    document.getElementById("musicBtn").innerHTML="🔊";
+
+  }
+
+}
+
+/* =========================
+   TOQUE PARA CREAR CORAZON
+========================= */
+
+document.addEventListener("click",function(e){
+
+  if(e.target.closest("button") ||
+     e.target.closest(".envelope")){
+    return;
+  }
+
+  const heart=document.createElement("div");
+
+  heart.innerHTML="💗";
+
+  heart.style.position="fixed";
+  heart.style.left=e.clientX+"px";
+  heart.style.top=e.clientY+"px";
+  heart.style.fontSize="25px";
+  heart.style.pointerEvents="none";
+  heart.style.zIndex="999";
+
+  document.body.appendChild(heart);
+
+  heart.animate([
+    {
+      transform:"translate(-50%,-50%) scale(.5)",
+      opacity:1
+    },
+    {
+      transform:"translate(-50%,-150px) scale(1.5)",
+      opacity:0
+    }
+  ],{
+    duration:1000,
+    easing:"ease-out"
+  });
+
+  setTimeout(()=>heart.remove(),1000);
+
+});
+
+</script>
+
+</body>
+</html>
